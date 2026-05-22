@@ -1,15 +1,26 @@
 .nav-list {
   list-style: none;
   display: flex;
-  justify-content: center;
+  gap: 2rem;
+  align-items: center;
 }
-
-.nav-list li {
-  font-size: 2rem;
-  margin: 0.5rem;
+.cart-icon {
+  position: relative;
 }
-
-.nav-list li a {
-  text-decoration: none;
-  color: inherit;
+.incart {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: #ef4444;
+  color: white;
+  font-size: 0.7rem;
+  border-radius: 50%;
+  padding: 2px 6px;
+}
+.nav-list li a i {
+  font-size: 1.5rem;
+  transition: color 0.2s;
+}
+.nav-list li a:hover i {
+  color: #3b82f6;
 }

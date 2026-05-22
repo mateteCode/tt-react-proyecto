@@ -1,12 +1,27 @@
 header {
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* Asegura que esté por encima de todo */
+  background-color: #121212; /* Mismo color que tu body */
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 2rem;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #333; /* Separador sutil */
 }
 
-.logo-container {
+.logo-container a {
   display: flex;
   align-items: center;
+  gap: 0.75rem; /* Espaciado entre icono y texto */
+  color: #fff;
+  font-family: "Playfair Display", serif; /* Una fuente más "librería" */
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+/* Estilo para el icono del logo */
+.logo-icon {
+  color: #3b82f6; /* Color azul marca */
   font-size: 2rem;
 }

@@ -1,13 +1,29 @@
 import "./Item.css";
 
-export const Item = ({ image, name, description, price, children }) => {
+export const Item = ({
+  image,
+  title,
+  author,
+  genre,
+  year,
+  description,
+  price,
+  children,
+}) => {
   return (
     <article className="card">
-      <img src={image} alt={`foto de ${name}`} />
-      <h3>{name}</h3>
-      <p>{description}</p>
-      <p>Precio: {price}</p>
-      {children}
+      <div className="card-image">
+        <img src={image} alt={`Portada de ${title}`} />
+      </div>
+      <div className="card-content">
+        <span className="genre-tag">{genre}</span>
+        <h2>{title}</h2>
+        <p className="author">{author}</p>
+        <div className="card-footer">
+          <p className="price">${price.toLocaleString()}</p>
+          {children}
+        </div>
+      </div>
     </article>
   );
 };

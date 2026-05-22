@@ -11,11 +11,13 @@ export const Nav = () => {
     <nav>
       <ul className="nav-list">
         <li>
-          <Link to={"/"}>Home</Link>
+          <Link to={"/"} title="Inicio">
+            <i className="fa-solid fa-house"></i>
+          </Link>
         </li>
         <li>
-          <Link to={"/carrito"}>
-            Carrito
+          <Link to={"/carrito"} title="Carrito" className="cart-icon">
+            <i className="fa-solid fa-cart-shopping"></i>
             {totalItems > 0 && <span className="incart">{totalItems}</span>}
           </Link>
         </li>

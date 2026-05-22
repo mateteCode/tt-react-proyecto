@@ -21,13 +21,16 @@ export const CartProvider = ({ children }) => {
     return inCart;
   };
 
-  const addItem = (item) => {
+  const addItem = (item, quantity) => {
     if (isInCart(item)) {
-      alert("El producto ya se encuentra en el carrito");
-      return;
+      setCart(
+        cart.map((i) =>
+          i.id === item.id ? { ...i, quantity: i.quantity + quantity } : i,
+        ),
+      );
+    } else {
+      setCart([...cart, { ...item, quantity }]);
     }
-    setCart([...cart, item]);
-    alert("Producto agregado al carrito");
   };
 
   const removeItem = (id) => {
@@ -40,13 +43,11 @@ export const CartProvider = ({ children }) => {
     setCart([]);
   };
 
-  const getTotalItems = () => {
-    return cart.length;
-  };
+  const getTotalItems = () =>
+    cart.reduce((acc, item) => acc + item.quantity, 0);
 
-  const getCartTotal = () => {
-    return cart.reduce((acc, element) => acc + element.price, 0);
-  };
+  const getCartTotal = () =>
+    cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
   const checkout = () => {
     const confirmation = confirm("¿Desea finalizar la compra?");
@@ -58,6 +59,14 @@ export const CartProvider = ({ children }) => {
     alert("Compra cancelada");
   };
 
+  const updateQuantityInCart = (id, newQuantity) => {
+    setCart(
+      cart.map((item) =>
+        item.id === id ? { ...item, quantity: newQuantity } : item,
+      ),
+    );
+  };
+
   const values = {
     clearCart,
     addItem,
@@ -66,6 +75,7 @@ export const CartProvider = ({ children }) => {
     getCartTotal,
     cart,
     checkout,
+    updateQuantityInCart,
   };
   return <CartContext.Provider value={values}>{children}</CartContext.Provider>;
 };

@@ -1,5 +1,34 @@
+/* Aseguramos que los controles sean compactos para la tabla */
 .count-container {
-  margin: 2rem;
   display: flex;
-  gap: 2rem;
+  justify-content: center; /* Alineación horizontal centrada */
+  align-items: center;
+  margin: 0;
+}
+
+.counter-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  background-color: #1e1e1e;
+  padding: 0.4rem 0.8rem;
+  border-radius: 50px;
+  border: 1px solid #333;
+}
+
+.btn-icon {
+  background: none;
+  border: none;
+  color: #3b82f6;
+  cursor: pointer;
+  padding: 0.4rem;
+  display: flex; /* Centra el icono */
+  align-items: center;
+}
+
+.count-display {
+  font-size: 1rem;
+  color: #fff;
+  min-width: 20px;
+  text-align: center;
 }
