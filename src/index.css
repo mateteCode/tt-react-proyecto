@@ -10,13 +10,12 @@ body {
   font-family: system-ui, sans-serif;
 }
 
-/* Para que el footer quede abajo siempre: hay que mantener la estructura de header-main-footer */
 #root {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
-/* Y que main ocupe el mayor espacio disponible */
+
 main {
   flex: 1;
   width: 80%;

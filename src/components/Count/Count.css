@@ -1,7 +1,6 @@
-/* Aseguramos que los controles sean compactos para la tabla */
 .count-container {
   display: flex;
-  justify-content: center; /* Alineación horizontal centrada */
+  justify-content: center;
   align-items: center;
   margin: 0;
 }
@@ -22,7 +21,7 @@
   color: #3b82f6;
   cursor: pointer;
   padding: 0.4rem;
-  display: flex; /* Centra el icono */
+  display: flex;
   align-items: center;
 }
 

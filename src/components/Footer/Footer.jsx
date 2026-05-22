@@ -7,16 +7,12 @@ export const Footer = () => {
       <nav>
         <ul className="social-list">
           <li>
-            <a href="https://wa.me/tu_numero" target="_blank" rel="noreferrer">
+            <a href="https://wa.me/1150006000" target="_blank" rel="noreferrer">
               <i className="fa-brands fa-whatsapp"></i>
             </a>
           </li>
           <li>
-            <a
-              href="https://instagram.com/tu_perfil"
-              target="_blank"
-              rel="noreferrer"
-            >
+            <a href="https://instagram.com/" target="_blank" rel="noreferrer">
               <i className="fa-brands fa-instagram"></i>
             </a>
           </li>

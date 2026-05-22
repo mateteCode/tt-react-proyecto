@@ -1,15 +1,6 @@
 import "./Item.css";
 
-export const Item = ({
-  image,
-  title,
-  author,
-  genre,
-  year,
-  description,
-  price,
-  children,
-}) => {
+export const Item = ({ image, title, author, genre, price, children }) => {
   return (
     <article className="card">
       <div className="card-image">

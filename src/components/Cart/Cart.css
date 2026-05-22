@@ -27,7 +27,7 @@
   padding: 1rem;
   border-bottom: 1px solid #333;
   text-align: center;
-  vertical-align: middle; /* Alineación vertical central */
+  vertical-align: middle;
 }
 
 /* Imagen del producto en tabla */
@@ -38,7 +38,7 @@
   border-radius: 4px;
 }
 
-/* Botón eliminar (Icono) */
+/* Botón eliminar */
 .btn-remove {
   background: none;
   border: none;
@@ -51,7 +51,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 auto; /* Centra el icono en la celda */
+  margin: 0 auto;
 }
 
 .btn-remove:hover {
@@ -68,7 +68,7 @@
 }
 
 .cart-table .counter-controls {
-  background-color: #121212; /* Un tono más oscuro que la tabla */
+  background-color: #121212;
   padding: 0.3rem 0.6rem;
   border-radius: 50px;
   border: 1px solid #333;
@@ -116,7 +116,6 @@
   gap: 1rem;
 }
 
-/* Estilo para el botón de limpiar (más sutil) */
 .btn-outline {
   background: transparent;
   border: 1px solid #ef4444;

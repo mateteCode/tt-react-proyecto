@@ -1,7 +1,7 @@
 /* Contenedor principal de la vista de detalle */
 .detail-container {
   display: grid;
-  grid-template-columns: 400px 1fr; /* Imagen fija a la izquierda */
+  grid-template-columns: 400px 1fr;
   gap: 3rem;
   padding: 2rem;
   background: #1e1e1e;
@@ -67,9 +67,8 @@
   margin: 1rem 0;
 }
 
-/* Contenedor de la notificación (Mantiene el layout estable) */
 .cart-notification-wrapper {
-  height: 50px; /* Altura fija para evitar saltos */
+  height: 50px;
   margin-bottom: 1rem;
   transition: opacity 0.3s ease;
 }
@@ -96,7 +95,6 @@
   width: 100%;
 }
 
-/* Bloque de acción (Contador y botón) */
 .detail-actions {
   border-top: 1px solid #333;
   padding-top: 1rem;
