@@ -24,3 +24,11 @@ footer {
   color: #e1306c;
   transform: scale(1.1);
 }
+.social-list li a:hover .fa-github {
+  color: #d1d5db;
+  transform: scale(1.1);
+}
+.social-list li a:hover .fa-rocket {
+  color: #3b82f6;
+  transform: scale(1.1);
+}

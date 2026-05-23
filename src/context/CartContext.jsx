@@ -31,6 +31,8 @@ export const CartProvider = ({ children }) => {
     } else {
       setCart([...cart, { ...item, quantity }]);
     }
+    alert("Producto agregado al carrito");
+    navigate("/");
   };
 
   const removeItem = (id) => {
@@ -55,6 +57,7 @@ export const CartProvider = ({ children }) => {
       clearCart();
       alert("Compra finalizada");
       navigate("/");
+      return;
     }
     alert("Compra cancelada");
   };

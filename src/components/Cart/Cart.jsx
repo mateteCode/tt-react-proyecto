@@ -20,7 +20,7 @@ export const Cart = () => {
 
   return (
     <section className="cart-container">
-      <h1>Tu Biblioteca</h1>
+      <h1>Tu Carrito de Compras</h1>
       <table className="cart-table">
         <thead>
           <tr>
@@ -34,11 +34,17 @@ export const Cart = () => {
         <tbody>
           {cart.map((item) => (
             <tr key={item.id}>
-              <td>
-                <img src={item.image} alt={item.title} className="cart-img" />
+              <td data-label="Portada">
+                <Link to={`/product/${item.id}`} className="cart-link">
+                  <img src={item.image} alt={item.title} className="cart-img" />
+                </Link>
               </td>
-              <td>{item.title}</td>
-              <td>
+              <td data-label="Título">
+                <Link to={`/product/${item.id}`} className="cart-link">
+                  {item.title}
+                </Link>
+              </td>
+              <td data-label="Ejemplares">
                 <Count
                   initial={item.quantity}
                   onCountChange={(newVal) =>
@@ -46,12 +52,11 @@ export const Cart = () => {
                   }
                 />
               </td>
-              <td>${item.price * item.quantity}</td>
-              <td>
+              <td data-label="Precio">${item.price * item.quantity}</td>
+              <td data-label="Eliminar">
                 <button
                   className="btn-remove"
                   onClick={() => removeItem(item.id)}
-                  title="Eliminar libro"
                 >
                   <i className="fa-solid fa-trash-can"></i>
                 </button>

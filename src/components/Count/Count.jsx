@@ -20,15 +20,19 @@ export const Count = ({ initial = 1, onCountChange, children }) => {
   return (
     <div className="count-container">
       <div className="counter-controls">
-        <button className="btn secondary" onClick={decrement}>
+        <button className="btn-icon" onClick={decrement}>
           <i className="fa-solid fa-minus"></i>
         </button>
         <span className="count-display">{count}</span>
-        <button className="btn secondary" onClick={increment}>
+        <button className="btn-icon" onClick={increment}>
           <i className="fa-solid fa-plus"></i>
         </button>
       </div>
-      {typeof children === "function" ? children(count) : children}
+      {children && (
+        <div className="count-children">
+          {typeof children === "function" ? children(count) : children}
+        </div>
+      )}
     </div>
   );
 };
