@@ -27,7 +27,7 @@ export const Cart = () => {
             <th>Portada</th>
             <th>Título</th>
             <th>Ejemplares</th>
-            <th>Precio</th>
+            <th>Subtotal</th>
             <th>Eliminar</th>
           </tr>
         </thead>
@@ -52,7 +52,7 @@ export const Cart = () => {
                   }
                 />
               </td>
-              <td data-label="Precio">${item.price * item.quantity}</td>
+              <td data-label="Subtotal">${item.price * item.quantity}</td>
               <td data-label="Eliminar">
                 <button
                   className="btn-remove"
