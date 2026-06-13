@@ -1,6 +1,7 @@
 import { useCart } from "../../context/CartContext";
 import { Count } from "../Count/Count";
 import { getGenreLabel } from "../../utils/genres";
+import { formatCurrency } from "../../utils/formatCurrency";
 import "./ItemDetail.css";
 
 export const ItemDetail = ({ item }) => {
@@ -20,7 +21,6 @@ export const ItemDetail = ({ item }) => {
         <h1>{item.title}</h1>
         <h3>{item.author}</h3>
 
-        {/* Info adicional */}
         <div className="meta-info">
           <p>
             <strong>Año:</strong> {item.year}
@@ -34,7 +34,7 @@ export const ItemDetail = ({ item }) => {
         </div>
 
         <p className="full-description">{item.description}</p>
-        <p className="price">${item.price.toLocaleString()}</p>
+        <p className="price">{formatCurrency(item.price)}</p>
 
         <div
           className={`cart-notification-wrapper ${itemInCart ? "visible" : "hidden"}`}
@@ -60,25 +60,13 @@ export const ItemDetail = ({ item }) => {
             </Count>
           ) : item.stock === 0 ? (
             // CASO 1: No hay stock en la base de datos
-            <p
-              style={{
-                color: "#ef4444",
-                fontWeight: "bold",
-                textAlign: "center",
-              }}
-            >
+            <p className="stock-message error">
               Este libro no tiene ejemplares disponibles por el momento.
             </p>
           ) : (
             // CASO 2: Hay stock, pero ya agregó todo al carrito
-            <p
-              style={{
-                color: "#f59e0b",
-                fontWeight: "bold",
-                textAlign: "center",
-              }}
-            >
-              Has alcanzado el límite de stock disponible para agregar.
+            <p className="stock-message warning">
+              Alcanzaste el límite de stock disponible para agregar.
             </p>
           )}
         </div>

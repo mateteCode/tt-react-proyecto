@@ -1,4 +1,5 @@
 import { getGenreLabel } from "../../utils/genres";
+import { formatCurrency } from "../../utils/formatCurrency";
 import "./Item.css";
 
 export const Item = ({
@@ -41,7 +42,7 @@ export const Item = ({
         <h2>{title}</h2>
         <p className="author">{author}</p>
         <div className="card-footer">
-          <p className="price">${price.toLocaleString()}</p>
+          <p className="price">{formatCurrency(price)}</p>
           {children}
         </div>
       </div>

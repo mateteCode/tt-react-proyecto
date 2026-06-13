@@ -18,11 +18,6 @@ export const Nav = () => {
           <Link to={"/"} title="Inicio">
             <i className="fa-solid fa-house"></i>
           </Link>
-          {/*
-            <Link to={"/genre/ficcion"} title="Inicio">
-            <i className="fa-solid fa-house"></i>
-          </Link>
-             */}
         </li>
 
         {/* Zona Pública */}

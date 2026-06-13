@@ -1,44 +1,24 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
-  getProducts,
   updateProductStock,
   deleteProduct,
 } from "../../../services/productsService";
 import { Loader } from "../../Loader/Loader";
 import { Count } from "../../Count/Count";
-import "./Dashboard.css";
 import { GenreNav } from "../../GenreNav/GenreNav";
+import { useProducts } from "../../../hooks/useProducts";
+import "./Dashboard.css";
 
 export const Dashboard = () => {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const { products, loading, selectedGenre, handleGenreChange, fetchProducts } =
+    useProducts();
   const [editingStockProduct, setEditingStockProduct] = useState(null);
 
-  const [selectedGenre, setSelectedGenre] = useState(() => {
-    return localStorage.getItem("selectedGenre") || "";
-  });
-
-  const fetchProducts = (genreToFetch) => {
-    setLoading(true);
-    getProducts(genreToFetch)
-      .then((data) => setProducts(data))
-      .catch((err) => console.log(err))
-      .finally(() => setLoading(false));
-  };
-
-  useEffect(() => {
-    fetchProducts(selectedGenre);
-  }, [selectedGenre]);
-
   const handleDelete = async (id, title) => {
-    if (
-      window.confirm(
-        `¿Estás seguro que deseas eliminar "${title}"? Esta acción no se puede deshacer.`,
-      )
-    ) {
+    if (window.confirm(`¿Estás seguro que deseas eliminar "${title}"?`)) {
       await deleteProduct(id);
-      fetchProducts(); // Recargar lista
+      fetchProducts(selectedGenre); // Recargamos usando la función del hook
     }
   };
 
@@ -46,13 +26,8 @@ export const Dashboard = () => {
     if (editingStockProduct) {
       await updateProductStock(editingStockProduct.id, newStock);
       setEditingStockProduct(null);
-      fetchProducts();
+      fetchProducts(selectedGenre);
     }
-  };
-
-  const handleGenreChange = (newGenre) => {
-    setSelectedGenre(newGenre);
-    localStorage.setItem("selectedGenre", newGenre);
   };
 
   if (loading) return <Loader />;
@@ -96,7 +71,6 @@ export const Dashboard = () => {
                 <td>${p.price}</td>
                 <td>
                   <div className="action-buttons">
-                    {/* Botón Editar (preparado para cuando crees la ruta /edit/:id) */}
                     <Link
                       to={`/admin/products/edit/${p.id}`}
                       className="btn-action edit"

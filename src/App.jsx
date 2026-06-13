@@ -15,6 +15,7 @@ function App() {
   return (
     <>
       <Routes>
+        {/* RUTAS PUBLICAS */}
         <Route element={<PublicLayout />}>
           <Route path="/" element={<ItemListContainer />} />
           {/* <Route path="/genre/:genre" element={<ItemListContainer />} /> */}
@@ -22,6 +23,8 @@ function App() {
           <Route path="/carrito" element={<Cart />} />
         </Route>
         <Route path="/admin/login" element={<Login />} />
+
+        {/* RUTAS PROTEGIDAS */}
         <Route
           path="/admin/*"
           element={
@@ -37,8 +40,8 @@ function App() {
           <Route path="products/success/:id" element={<ProductSuccess />} />
         </Route>
 
-        {/* 404 (Creo que va acá)*/}
-        <Route path="*" element={<h1>404 - Página no encontrada</h1>} />
+        {/* RUTAS NO ENCONTRADAS */}
+        <Route path="*" element={<Navigate to={"/"} />} />
       </Routes>
     </>
   );

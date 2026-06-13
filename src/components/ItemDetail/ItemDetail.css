@@ -136,3 +136,14 @@
     height: 350px;
   }
 }
+
+.stock-message {
+  font-weight: bold;
+  text-align: center;
+}
+.stock-message.error {
+  color: #ef4444;
+}
+.stock-message.warning {
+  color: #f59e0b;
+}
