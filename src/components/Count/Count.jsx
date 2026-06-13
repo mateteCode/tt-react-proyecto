@@ -1,7 +1,13 @@
 import { useState } from "react";
 import "./Count.css";
 
-export const Count = ({ initial = 1, onCountChange, children }) => {
+export const Count = ({
+  initial = 1,
+  min = 1,
+  max,
+  onCountChange,
+  children,
+}) => {
   const [count, setCount] = useState(initial);
 
   const updateCount = (newCount) => {
@@ -11,10 +17,13 @@ export const Count = ({ initial = 1, onCountChange, children }) => {
     }
   };
 
-  const increment = () => updateCount(count + 1);
+  const increment = () => {
+    if (max !== undefined && count >= max) return;
+    updateCount(count + 1);
+  };
 
   const decrement = () => {
-    if (count > 1) updateCount(count - 1);
+    if (count > min) updateCount(count - 1);
   };
 
   return (
@@ -24,7 +33,11 @@ export const Count = ({ initial = 1, onCountChange, children }) => {
           <i className="fa-solid fa-minus"></i>
         </button>
         <span className="count-display">{count}</span>
-        <button className="btn-icon" onClick={increment}>
+        <button
+          className="btn-icon"
+          onClick={increment}
+          disabled={count >= max}
+        >
           <i className="fa-solid fa-plus"></i>
         </button>
       </div>

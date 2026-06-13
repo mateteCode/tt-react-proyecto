@@ -1,15 +1,20 @@
+import { GENRES } from "../../utils/genres";
+
 export const ProductFormUI = ({
   product,
   errors,
   loading,
+  isEdit,
   onChange,
   onFileChange,
   onSubmit,
+  onCancel,
 }) => {
   return (
     <section>
       <form className="product-form" onSubmit={onSubmit}>
-        <h2>Agregar nuevo producto</h2>
+        <h2>{isEdit ? "Editar libro" : "Agregar nuevo libro"}</h2>
+
         <div>
           <label>Título:</label>
           <input
@@ -21,6 +26,7 @@ export const ProductFormUI = ({
           />
           {errors.title && <p className="error">{errors.title}</p>}
         </div>
+
         <div>
           <label>Autor:</label>
           <input
@@ -32,6 +38,7 @@ export const ProductFormUI = ({
           />
           {errors.author && <p className="error">{errors.author}</p>}
         </div>
+
         <div>
           <label>Descripción:</label>
           <textarea
@@ -39,23 +46,39 @@ export const ProductFormUI = ({
             value={product.description}
             onChange={onChange}
             required
-            rows={5}
+            rows={4}
             placeholder="Escribe la descripción del producto aquí..."
           />
           {errors.description && <p className="error">{errors.description}</p>}
         </div>
-        <div>
-          <label>Año:</label>
-          <input
-            type="number"
-            name="year"
-            value={product.year}
-            onChange={onChange}
-            min="0"
-            required
-          />
-          {errors.year && <p className="error">{errors.year}</p>}
+
+        <div className="row-2">
+          <div>
+            <label>Año:</label>
+            <input
+              type="number"
+              name="year"
+              value={product.year}
+              onChange={onChange}
+              min="0"
+              required
+            />
+            {errors.year && <p className="error">{errors.year}</p>}
+          </div>
+          <div>
+            <label>Páginas:</label>
+            <input
+              type="number"
+              name="pages"
+              value={product.pages}
+              onChange={onChange}
+              min="0"
+              required
+            />
+            {errors.pages && <p className="error">{errors.pages}</p>}
+          </div>
         </div>
+
         <div>
           <label>Género:</label>
           <select
@@ -65,26 +88,42 @@ export const ProductFormUI = ({
             required
           >
             <option value="">Selecciona un género...</option>
-            <option value="ficcion">Ficción</option>
-            <option value="fantasia">Fantasía</option>
-            <option value="ciencia-ficcion">Ciencia Ficción</option>
-            <option value="no-ficcion">No Ficción</option>
-            <option value="desarrollo-personal">Desarrollo Personal</option>
+            {GENRES.map((g) => (
+              <option key={g.value} value={g.value}>
+                {g.label}
+              </option>
+            ))}
           </select>
           {errors.genre && <p className="error">{errors.genre}</p>}
         </div>
-        <div>
-          <label>Precio:</label>
-          <input
-            type="number"
-            name="price"
-            value={product.price}
-            onChange={onChange}
-            min="0"
-            required
-          />
-          {errors.price && <p className="error">{errors.price}</p>}
+
+        <div className="row-2">
+          <div>
+            <label>Precio:</label>
+            <input
+              type="number"
+              name="price"
+              value={product.price}
+              onChange={onChange}
+              min="0"
+              required
+            />
+            {errors.price && <p className="error">{errors.price}</p>}
+          </div>
+          <div>
+            <label>Stock:</label>
+            <input
+              type="number"
+              name="stock"
+              value={product.stock}
+              onChange={onChange}
+              min="0"
+              required
+            />
+            {errors.stock && <p className="error">{errors.stock}</p>}
+          </div>
         </div>
+
         <div>
           <label>Portada:</label>
           <input
@@ -92,26 +131,24 @@ export const ProductFormUI = ({
             name="image"
             accept="image/*"
             onChange={onFileChange}
-            required
+            required={!isEdit}
           />
           {errors.file && <p className="error">{errors.file}</p>}
         </div>
-        <div>
-          <label>Páginas:</label>
-          <input
-            type="number"
-            name="pages"
-            value={product.pages}
-            onChange={onChange}
-            min="0"
-            required
-          />
-          {errors.pages && <p className="error">{errors.pages}</p>}
-        </div>
 
-        <button className="btn" type="submit" disabled={loading}>
-          {loading ? "Guardando..." : "Guardar"}
-        </button>
+        <div className="form-actions">
+          <button
+            type="button"
+            className="btn-cancel"
+            onClick={onCancel}
+            disabled={loading}
+          >
+            Cancelar
+          </button>
+          <button className="btn primary" type="submit" disabled={loading}>
+            {loading ? "Guardando..." : "Guardar"}
+          </button>
+        </div>
 
         {errors.general && <p className="error">{errors.general}</p>}
       </form>

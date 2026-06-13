@@ -17,7 +17,7 @@ function App() {
       <Routes>
         <Route element={<PublicLayout />}>
           <Route path="/" element={<ItemListContainer />} />
-          <Route path="/genre/:genre" element={<ItemListContainer />} />
+          {/* <Route path="/genre/:genre" element={<ItemListContainer />} /> */}
           <Route path="/product/:id" element={<ItemDetailContainer />} />
           <Route path="/carrito" element={<Cart />} />
         </Route>
@@ -33,6 +33,7 @@ function App() {
           <Route index element={<Navigate to={"dashboard"} />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="products/new" element={<ProductFormContainer />} />
+          <Route path="products/edit/:id" element={<ProductFormContainer />} />
           <Route path="products/success/:id" element={<ProductSuccess />} />
         </Route>
 

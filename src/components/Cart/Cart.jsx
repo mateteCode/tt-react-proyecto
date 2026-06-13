@@ -47,6 +47,7 @@ export const Cart = () => {
               <td data-label="Ejemplares">
                 <Count
                   initial={item.quantity}
+                  max={item.stock}
                   onCountChange={(newVal) =>
                     updateQuantityInCart(item.id, newVal)
                   }

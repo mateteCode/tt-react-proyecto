@@ -1,5 +1,9 @@
 import { createContext, useContext, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
+import {
+  getProductById,
+  updateProductStock,
+} from "../services/productsService";
 
 const CartContext = createContext();
 
@@ -16,13 +20,33 @@ export const CartProvider = ({ children }) => {
   const navigate = useNavigate();
   const [cart, setCart] = useState([]);
 
+  /*
   const isInCart = (item) => {
     const inCart = cart.some((element) => element.id === item.id);
     return inCart;
   };
+  */
 
-  const addItem = (item, quantity) => {
-    if (isInCart(item)) {
+  const addItem = async (item, quantity) => {
+    const dbProduct = await getProductById(item.id);
+
+    if (!dbProduct) {
+      alert("El producto no existe.");
+      return;
+    }
+
+    const existingItem = cart.find((i) => i.id === item.id);
+    const existingQuantity = existingItem ? existingItem.quantity : 0;
+    const totalDesired = existingQuantity + quantity;
+
+    if (totalDesired > dbProduct.stock) {
+      alert(
+        `Stock insuficiente. Solo quedan ${dbProduct.stock} unidades disponibles.`,
+      );
+      return;
+    }
+
+    if (existingItem) {
       setCart(
         cart.map((i) =>
           i.id === item.id ? { ...i, quantity: i.quantity + quantity } : i,
@@ -51,15 +75,26 @@ export const CartProvider = ({ children }) => {
   const getCartTotal = () =>
     cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
-  const checkout = () => {
+  const checkout = async () => {
     const confirmation = confirm("¿Desea finalizar la compra?");
     if (confirmation) {
-      clearCart();
-      alert("Compra finalizada");
-      navigate("/");
-      return;
+      try {
+        for (const item of cart) {
+          const dbProduct = await getProductById(item.id);
+          const nuevoStock = dbProduct.stock - item.quantity;
+          await updateProductStock(item.id, nuevoStock);
+        }
+
+        clearCart();
+        alert("¡Compra finalizada con éxito!");
+        navigate("/");
+      } catch (error) {
+        console.error("Error al procesar la compra", error);
+        alert("Hubo un error procesando su compra.");
+      }
+    } else {
+      alert("Compra cancelada");
     }
-    alert("Compra cancelada");
   };
 
   const updateQuantityInCart = (id, newQuantity) => {

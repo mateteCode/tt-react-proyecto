@@ -33,6 +33,7 @@
 .product-form input[type="text"],
 .product-form input[type="number"],
 .product-form input[type="file"],
+.product-form select,
 .product-form textarea {
   width: 100%;
   padding: 0.6rem 0.75rem;
@@ -41,6 +42,7 @@
   background: #3a3a3a;
   color: #f0f0f0;
   outline: none;
+  font-family: inherit;
   transition:
     border-color 0.15s ease,
     background 0.15s ease;
@@ -51,18 +53,34 @@
   color: #aaa;
 }
 
+.product-form input[type="file"]::file-selector-button {
+  background: #3b82f6;
+  color: #fff;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 1rem;
+  font-weight: 500;
+  transition: background 0.2s ease;
+}
+
+.product-form input[type="file"]::file-selector-button:hover {
+  background: #2563eb;
+}
+
 /* Hover/focus */
 .product-form input[type="text"]:focus,
 .product-form input[type="number"]:focus,
 .product-form input[type="file"]:focus,
 .product-form textarea:focus {
-  border-color: #5aa3ff;
+  border-color: #2563eb;
   background: #353535;
 }
 
 /* Textarea */
 .product-form textarea {
-  min-height: 120px;
+  min-height: 90px;
   resize: vertical;
 }
 
@@ -96,8 +114,18 @@
     box-shadow 0.15s ease;
 }
 
+/* Estilo para el botón cancelar */
+.btn-cancel {
+  background: transparent;
+  border: 1px solid #666;
+  color: #ccc;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
 .btn:hover {
-  background: #79b6ff;
+  background: #2563eb;
 }
 .btn:active {
   transform: translateY(1px);
@@ -107,12 +135,24 @@
   cursor: not-allowed;
 }
 
-/* Layout responsive (opcional, si más adelante querés dos columnas) */
+.btn-cancel:hover {
+  background: #444;
+  color: #fff;
+}
+
+/* Layout responsive */
 @media (min-width: 640px) {
   .product-form .row-2 {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  .product-form .row-2 > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 0; /* Para que no se pisen los márgenes */
   }
 }
 
@@ -151,4 +191,24 @@
 
 .error {
   color: red;
+}
+
+/* 🔥 Contenedor para alinear los botones en fila y centrados ganándole al grid */
+.product-form div.form-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.product-form div.form-actions .btn,
+.product-form div.form-actions .btn-cancel {
+  width: auto;
+  min-width: 130px; /* Tamaño mínimo para que queden parejos */
+  padding: 0.6rem 1.5rem;
+  font-weight: 600;
+  text-align: center;
+  margin: 0; /* Anula cualquier margen extra que le haya dado el grid */
 }

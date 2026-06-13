@@ -6,6 +6,10 @@ import {
   doc,
   query,
   where,
+  updateDoc,
+  deleteDoc,
+  serverTimestamp, // 🔥 Agregamos esto
+  orderBy,
 } from "firebase/firestore";
 
 import { db } from "../firebase/config";
@@ -54,9 +58,13 @@ export const getProducts = async (genre) => {
   try {
     let queryRef;
     if (genre) {
-      queryRef = query(productsRef, where("genre", "==", genre));
+      queryRef = query(
+        productsRef,
+        where("genre", "==", genre),
+        orderBy("createdAt", "desc"),
+      );
     } else {
-      queryRef = productsRef;
+      queryRef = query(productsRef, orderBy("createdAt", "desc"));
     }
 
     const snapshot = await getDocs(queryRef);
@@ -67,17 +75,36 @@ export const getProducts = async (genre) => {
 
     return productsFormat;
   } catch (error) {
-    console.log("Error al traer productos por género:", error);
+    console.log("Error al traer productos:", error);
     return [];
   }
 };
 
 export const createProduct = async (product) => {
   try {
-    const docRef = await addDoc(productsRef, product);
+    const newProduct = {
+      ...product,
+      createdAt: serverTimestamp(),
+    };
+    const docRef = await addDoc(productsRef, newProduct);
     return docRef.id;
   } catch (error) {
     console.log("Error al crear producto:", error);
     throw error;
   }
+};
+
+export const updateProductStock = async (id, newStock) => {
+  const docRef = doc(db, "products", id);
+  await updateDoc(docRef, { stock: newStock });
+};
+
+export const deleteProduct = async (id) => {
+  const docRef = doc(db, "products", id);
+  await deleteDoc(docRef);
+};
+
+export const updateProduct = async (id, productData) => {
+  const docRef = doc(db, "products", id);
+  await updateDoc(docRef, productData);
 };
