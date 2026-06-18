@@ -1,0 +1,52 @@
+.detail-header {
+  position: relative; /* Necesario para anclar el botón de forma absoluta */
+  display: flex;
+  justify-content: center; /* Centra el h1 perfectamente en el medio */
+  align-items: center;
+  max-width: 1000px;
+
+  /* Margen: Arriba (3rem) | Derecha (auto) | Abajo (0.5rem) | Izquierda (auto) */
+  margin: 1rem auto 0rem auto;
+}
+
+.detail-header h1 {
+  margin: 0;
+  text-align: center;
+}
+
+.btn-back {
+  position: absolute;
+  left: 0; /* Ancla el botón estrictamente a la izquierda del contenedor */
+  background: transparent;
+  border: 1px solid #333;
+  color: #b3b3b3;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+
+.btn-back:hover {
+  background-color: #2563eb;
+  color: #fff;
+  border-color: #444;
+}
+
+/* Ajuste para pantallas móviles para que no se superponga el botón con el texto */
+@media (max-width: 768px) {
+  .detail-header {
+    flex-direction: column;
+    margin-top: 2rem;
+    gap: 1.5rem;
+  }
+
+  .btn-back {
+    position: static; /* Le quitamos el absolute en celulares */
+    align-self: flex-start; /* Lo mandamos a la izquierda de forma normal */
+  }
+}
