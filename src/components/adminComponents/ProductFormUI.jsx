@@ -1,5 +1,7 @@
 import { GENRES } from "../../utils/genres";
 
+import "./ProductFormUI.css";
+
 export const ProductFormUI = ({
   product,
   errors,
@@ -139,7 +141,7 @@ export const ProductFormUI = ({
         <div className="form-actions">
           <button
             type="button"
-            className="btn-cancel"
+            className="btn outline btn-cancel"
             onClick={onCancel}
             disabled={loading}
           >

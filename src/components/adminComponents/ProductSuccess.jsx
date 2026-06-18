@@ -1,5 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 
+import "./ProductSuccess.css";
+
 export const ProductSuccess = () => {
   const { id } = useParams();
   const navigate = useNavigate();

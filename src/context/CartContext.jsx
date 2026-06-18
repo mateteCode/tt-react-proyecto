@@ -4,6 +4,7 @@ import {
   getProductById,
   updateProductStock,
 } from "../services/productsService";
+import { useModal } from "./ModalContext";
 
 const CartContext = createContext();
 
@@ -19,19 +20,13 @@ export const useCart = () => {
 export const CartProvider = ({ children }) => {
   const navigate = useNavigate();
   const [cart, setCart] = useState([]);
-
-  /*
-  const isInCart = (item) => {
-    const inCart = cart.some((element) => element.id === item.id);
-    return inCart;
-  };
-  */
+  const { showAlert, showConfirm } = useModal();
 
   const addItem = async (item, quantity) => {
     const dbProduct = await getProductById(item.id);
 
     if (!dbProduct) {
-      alert("El producto no existe.");
+      showAlert("Error", "El producto no existe.");
       return;
     }
 
@@ -40,8 +35,9 @@ export const CartProvider = ({ children }) => {
     const totalDesired = existingQuantity + quantity;
 
     if (totalDesired > dbProduct.stock) {
-      alert(
-        `Stock insuficiente. Solo quedan ${dbProduct.stock} unidades disponibles.`,
+      showAlert(
+        "Stock insuficiente",
+        `Solo quedan ${dbProduct.stock} unidades disponibles.`,
       );
       return;
     }
@@ -55,14 +51,21 @@ export const CartProvider = ({ children }) => {
     } else {
       setCart([...cart, { ...item, quantity }]);
     }
-    alert("Producto agregado al carrito");
-    navigate("/");
+    showAlert("¡Agregado!", "Producto agregado al carrito exitosamente.", () =>
+      navigate("/"),
+    );
+    //navigate("/");
   };
 
   const removeItem = (id) => {
-    const updatedCart = cart.filter((element) => element.id !== id);
-    setCart(updatedCart);
-    alert("Producto eliminado del carrito");
+    showConfirm(
+      "Quitar del carrito",
+      "¿Seguro que deseas eliminar este libro de tu carrito?",
+      () => {
+        const updatedCart = cart.filter((element) => element.id !== id);
+        setCart(updatedCart);
+      },
+    );
   };
 
   const clearCart = () => {
@@ -76,25 +79,27 @@ export const CartProvider = ({ children }) => {
     cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
   const checkout = async () => {
-    const confirmation = confirm("¿Desea finalizar la compra?");
-    if (confirmation) {
-      try {
-        for (const item of cart) {
-          const dbProduct = await getProductById(item.id);
-          const nuevoStock = dbProduct.stock - item.quantity;
-          await updateProductStock(item.id, nuevoStock);
-        }
+    showConfirm(
+      "Finalizar Compra",
+      "¿Estás seguro que deseas realizar la compra de estos libros?",
+      async () => {
+        try {
+          for (const item of cart) {
+            const dbProduct = await getProductById(item.id);
+            const nuevoStock = dbProduct.stock - item.quantity;
+            await updateProductStock(item.id, nuevoStock);
+          }
 
-        clearCart();
-        alert("¡Compra finalizada con éxito!");
-        navigate("/");
-      } catch (error) {
-        console.error("Error al procesar la compra", error);
-        alert("Hubo un error procesando su compra.");
-      }
-    } else {
-      alert("Compra cancelada");
-    }
+          clearCart();
+          showAlert("¡Éxito!", "¡Compra finalizada con éxito!", () =>
+            navigate("/"),
+          );
+        } catch (error) {
+          console.error("Error al procesar la compra", error);
+          showAlert("Error", "Hubo un error procesando su compra.");
+        }
+      },
+    );
   };
 
   const updateQuantityInCart = (id, newQuantity) => {

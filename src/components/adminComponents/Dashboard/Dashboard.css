@@ -10,115 +10,12 @@
   margin-bottom: 2rem;
   color: #fff;
 }
-.table-container {
-  background: #1e1e1e;
-  border-radius: 12px;
-  border: 1px solid #333;
-  overflow-x: auto;
-}
-.admin-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-.admin-table th {
-  background: #121212;
-  color: #888;
-  padding: 1rem;
-  text-align: left;
-  border-bottom: 1px solid #333;
-}
-.admin-table td {
-  padding: 1rem;
-  border-bottom: 1px solid #333;
-  color: #f0f0f0;
-  vertical-align: middle;
-}
-.table-img {
-  width: 40px;
-  height: 60px;
-  object-fit: cover;
-  border-radius: 4px;
-}
-.stock-badge {
-  padding: 2px 8px;
-  border-radius: 12px;
-  font-weight: bold;
-  font-size: 0.85rem;
-}
-.has-stock {
-  background: #064e3b;
-  color: #34d399;
-}
-.no-stock {
-  background: #7f1d1d;
-  color: #f87171;
-}
 
-.action-buttons {
-  display: flex;
-  gap: 1.2rem;
-}
-.btn-action {
-  background: none;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-  transition:
-    transform 0.2s,
-    color 0.2s;
-}
-.btn-action.edit {
-  color: #3b82f6;
-}
-.btn-action.stock {
-  color: #f59e0b;
-}
-.btn-action.delete {
-  color: #ef4444;
-}
-.btn-action:hover {
-  transform: scale(1.2);
-}
-
-/* Modal Styles */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 2000;
-}
-.modal-content {
-  background: #1e1e1e;
-  padding: 2rem;
-  border-radius: 12px;
-  border: 1px solid #333;
-  text-align: center;
-  min-width: 320px;
-}
-.modal-content h3 {
-  color: #fff;
-  margin-bottom: 0.5rem;
-}
-.modal-content p {
-  color: #888;
-  margin-bottom: 1.5rem;
-}
-.stock-counter-wrapper {
-  margin-bottom: 1.5rem;
-}
-.stock-save-btn {
-  width: 100%;
-  margin-top: 1rem;
-}
+/*
 .btn.outline {
   background: transparent;
   border: 1px solid #666;
   color: #ccc;
   width: 100%;
 }
+*/

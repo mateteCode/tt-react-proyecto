@@ -1,0 +1,50 @@
+.table-img {
+  width: 40px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.stock-badge {
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 0.85rem;
+}
+
+.has-stock {
+  background: #064e3b;
+  color: #34d399;
+}
+
+.no-stock {
+  background: #7f1d1d;
+  color: #f87171;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 1.2rem;
+}
+
+.btn-action {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition:
+    transform 0.2s,
+    color 0.2s;
+}
+.btn-action.edit {
+  color: #3b82f6;
+}
+.btn-action.stock {
+  color: #f59e0b;
+}
+.btn-action.delete {
+  color: #ef4444;
+}
+.btn-action:hover {
+  transform: scale(1.2);
+}

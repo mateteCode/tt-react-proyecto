@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import "./ProductFormContainer.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { ProductFormUI } from "./ProductFormUI";
 import { validateProduct } from "../../utils/validateProduct";
@@ -25,7 +24,6 @@ export const ProductFormContainer = () => {
   const { id } = useParams();
   const isEdit = Boolean(id);
   const navigate = useNavigate();
-
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
   const [file, setFile] = useState(null);

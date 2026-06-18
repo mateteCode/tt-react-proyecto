@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./Cart.css";
 import { Count } from "../Count/Count";
 import { CartEmpty } from "../CartEmpty/CartEmpty";
+import { useModal } from "../../context/ModalContext";
 
 export const Cart = () => {
   const {
@@ -13,6 +14,16 @@ export const Cart = () => {
     updateQuantityInCart,
     checkout,
   } = useCart();
+
+  const { showConfirm } = useModal();
+
+  const handleClearCart = () => {
+    showConfirm(
+      "Vaciar carrito",
+      "¿Estás seguro que deseas eliminar todos los libros de tu carrito?",
+      clearCart,
+    );
+  };
 
   if (cart.length === 0) {
     return <CartEmpty />;
@@ -70,7 +81,7 @@ export const Cart = () => {
         <h3 className="cart-total">Total: ${getCartTotal()}</h3>
 
         <div className="cart-actions">
-          <button className="btn-outline" onClick={clearCart}>
+          <button className="btn-outline" onClick={handleClearCart}>
             Limpiar carrito
           </button>
           <button className="btn primary" onClick={checkout}>

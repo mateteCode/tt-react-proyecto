@@ -10,7 +10,6 @@
 .loader-icon {
   font-size: 3rem;
   color: #3b82f6;
-  /* 🔥 Agregamos la animación personalizada acá */
   animation: girar 1s linear infinite;
 }
 
@@ -20,7 +19,6 @@
   letter-spacing: 1px;
 }
 
-/* 🔥 Creamos la regla para que rote de 0 a 360 grados */
 @keyframes girar {
   from {
     transform: rotate(0deg);

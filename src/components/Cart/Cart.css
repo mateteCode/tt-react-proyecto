@@ -1,11 +1,9 @@
-/* Contenedor del carrito */
 .cart-container {
   padding: 2rem;
   max-width: 1000px;
   margin: 0 auto;
 }
 
-/* Estilos de la tabla */
 .cart-table {
   width: 100%;
   border-collapse: collapse;
@@ -14,7 +12,6 @@
   border-radius: 12px;
   overflow: hidden;
 }
-
 .cart-table th {
   padding: 1.5rem;
   text-align: center;
@@ -22,15 +19,12 @@
   color: #888;
   font-weight: 500;
 }
-
 .cart-table td {
   padding: 1rem;
   border-bottom: 1px solid #333;
   text-align: center;
   vertical-align: middle;
 }
-
-/* Imagen del producto en tabla */
 .cart-table img {
   width: 80px;
   height: 100px;
@@ -38,7 +32,6 @@
   border-radius: 4px;
 }
 
-/* Botón eliminar */
 .btn-remove {
   background: none;
   border: none;
@@ -53,33 +46,28 @@
   align-items: center;
   margin: 0 auto;
 }
-
 .btn-remove:hover {
   color: #ef4444;
   transform: scale(1.1);
 }
 
-/* Estilo del contador dentro de la tabla */
 .cart-table .count-container {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0;
 }
-
 .cart-table .counter-controls {
   padding: 0.3rem 0.6rem;
   display: flex;
   gap: 0.8rem;
   align-items: center;
 }
-
 .cart-table .count-display {
   font-size: 1rem;
   color: #fff;
   min-width: 25px;
 }
-
 .cart-footer {
   display: flex;
   justify-content: space-between;
@@ -90,7 +78,6 @@
   margin-top: 2rem;
   border: 1px solid #333;
 }
-
 .cart-total {
   font-size: 1.5rem;
   color: #fff;
@@ -111,7 +98,6 @@
   cursor: pointer;
   transition: all 0.3s;
 }
-
 .btn-outline:hover {
   background: #ef4444;
   color: white;
@@ -121,7 +107,6 @@
   .cart-table thead {
     display: none;
   }
-
   .cart-table,
   .cart-table tbody,
   .cart-table tr,
@@ -129,7 +114,6 @@
     display: block;
     width: 100%;
   }
-
   .cart-table tr {
     margin-bottom: 1rem;
     border: 1px solid #333;
@@ -137,7 +121,6 @@
     border-radius: 8px;
     background: #121212;
   }
-
   .cart-table td {
     text-align: right;
     display: flex;
@@ -146,15 +129,12 @@
     padding: 0.5rem 0;
     border-bottom: 1px solid #222;
   }
-
-  /* Etiquetado para mostrar qué es cada cosa */
   .cart-table td::before {
     content: attr(data-label);
     font-weight: bold;
     color: #888;
   }
 
-  /* Ajuste de acciones en el carrito */
   .cart-footer {
     flex-direction: column;
     gap: 1rem;

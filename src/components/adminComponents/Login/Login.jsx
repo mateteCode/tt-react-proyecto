@@ -5,8 +5,16 @@ import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
 export const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
   const [error, setError] = useState("");
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -15,8 +23,8 @@ export const Login = () => {
     e.preventDefault();
     setError("");
     try {
-      await login(email, password);
-      navigate("/admin/dashboard");
+      await login(formData.email, formData.password);
+      navigate("/admin/dashboard", { replace: true });
     } catch (err) {
       setError("Credenciales incorrectas o error de conexión.");
       console.error(err);
@@ -26,7 +34,7 @@ export const Login = () => {
   return (
     <div className="login-wrapper">
       <div className="login-container">
-        <h2>Iniciar Sesión (Admin)</h2>
+        <h2>Iniciar Sesión</h2>
         {error && <p className="login-error">{error}</p>}
 
         <form onSubmit={handleSubmit} className="login-form">
@@ -34,8 +42,9 @@ export const Login = () => {
             <label>Email:</label>
             <input
               type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
               required
               className="login-input"
             />
@@ -44,8 +53,9 @@ export const Login = () => {
             <label>Contraseña:</label>
             <input
               type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
               required
               className="login-input"
             />

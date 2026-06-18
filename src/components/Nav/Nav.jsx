@@ -2,14 +2,20 @@ import { Link, useLocation } from "react-router-dom";
 import "./Nav.css";
 import { useCart } from "../../context/CartContext";
 import { useAuth } from "../../context/AuthContext";
+import { useModal } from "../../context/ModalContext";
 
 export const Nav = () => {
   const { getTotalItems } = useCart();
   const { user, logout } = useAuth();
   const location = useLocation();
   const totalItems = getTotalItems();
+  const { showConfirm } = useModal();
 
   const isAdminPath = location.pathname.startsWith("/admin");
+
+  const handleLogout = () => {
+    showConfirm("Cerrar Sesión", "¿Seguro que quieres salir?", logout);
+  };
 
   return (
     <nav>
@@ -43,7 +49,7 @@ export const Nav = () => {
 
             <li>
               <button
-                onClick={logout}
+                onClick={handleLogout}
                 title="Cerrar sesión"
                 className="btn-logout"
               >

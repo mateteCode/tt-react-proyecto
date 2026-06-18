@@ -1,6 +1,5 @@
 import "./GenreNav.css";
 
-// Definimos los géneros disponibles. "value" vacío para "Todos".
 import { GENRES } from "../../utils/genres";
 
 export const GenreNav = ({ currentGenre, onSelect }) => {
